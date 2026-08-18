@@ -10,6 +10,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, Subset
 
 from dataset import process_csv_to_tensors
+from experiment_paths import result_path
 from model import GraphWaveNet_Baseline, MTGNN_Baseline
 
 
@@ -155,7 +156,7 @@ def main() -> None:
     parser.add_argument("--epochs", type=int, default=8)
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--seq-len", type=int, default=12)
-    parser.add_argument("--output", default="new_baseline_metrics.csv")
+    parser.add_argument("--output", default=result_path("new_baseline_metrics.csv"))
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--horizons", type=int, nargs="+", default=[1, 2, 3, 4])
     parser.add_argument("--models", nargs="+", default=["Graph WaveNet", "MTGNN"])

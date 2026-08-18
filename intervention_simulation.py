@@ -8,6 +8,7 @@ from torch.utils.data import DataLoader, Subset
 import random
 
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path
 from model import PI_X_STGAT
 from metrics import PhysicsLossCheck
 
@@ -159,7 +160,7 @@ def main():
     plt.ylim(0, max(jam_baseline, jam_random, jam_xai) * 1.3)
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig("Fig_Event_Intervention_Simulation.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_Event_Intervention_Simulation.png"), dpi=300, bbox_inches='tight')
     print("✅ 繪圖完成！請檢查 'Fig_Event_Intervention_Simulation.png'。")
 
 if __name__ == "__main__":

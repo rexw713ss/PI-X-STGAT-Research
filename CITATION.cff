@@ -1,0 +1,58 @@
+cff-version: 1.2.0
+
+message: >
+  If you use PI-X-STGAT, this repository, its implementation,
+  trained model, or experimental results in academic work,
+  please cite the corresponding research article.
+
+title: "PI-X-STGAT: Physics-Informed Explainable Spatial-Temporal Graph Attention Network"
+
+type: software
+
+authors:
+  - family-names: "Li"
+    given-names: "Yan-Wei"
+
+  - family-names: "Li"
+    given-names: "David Chunhu"
+
+repository-code: "https://github.com/rexw713ss/PI-X-STGAT-Research"
+
+url: "https://github.com/rexw713ss/PI-X-STGAT-Research"
+
+license: MIT
+
+keywords:
+  - traffic forecasting
+  - spatial-temporal graph neural network
+  - graph attention network
+  - physics-informed learning
+  - physics-guided deep learning
+  - explainable artificial intelligence
+  - intelligent transportation systems
+  - out-of-distribution robustness
+  - congestion forecasting
+  - PI-X-STGAT
+
+preferred-citation:
+  type: article
+
+  authors:
+    - family-names: "Li"
+      given-names: "Yan-Wei"
+
+    - family-names: "Li"
+      given-names: "David Chunhu"
+
+  title: >
+    A Physics-Informed Spatial-Temporal Graph Attention Model
+    for Traffic Forecasting and Interpretable Congestion
+    Propagation Analysis
+
+  journal: "Computer Modeling in Engineering & Sciences"
+
+  year: 2026
+
+  doi: "10.32604/cmes.2026.086216"
+
+  url: "https://doi.org/10.32604/cmes.2026.086216"

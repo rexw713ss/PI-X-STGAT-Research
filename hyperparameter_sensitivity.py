@@ -7,6 +7,7 @@ import seaborn as sns
 from torch.utils.data import DataLoader, Subset
 
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path
 from model import VanillaSTGAT
 from metrics import PhysicsLossCheck
 
@@ -82,19 +83,19 @@ def main():
     best_lambda = df.loc[min_idx, 'Lambda']
     best_mae = df.loc[min_idx, 'Jam MAE']
     
-    plt.annotate(f'Optimal $\lambda_{{phy}}$ = {best_lambda}\n(MAE = {best_mae:.4f})',
+    plt.annotate(f'Optimal $\\lambda_{{phy}}$ = {best_lambda}\n(MAE = {best_mae:.4f})',
                  xy=(min_idx, best_mae), xytext=(0, 30),
                  textcoords='offset points', ha='center', va='bottom',
                  fontsize=14, fontweight='bold', color='#c0392b',
                  arrowprops=dict(arrowstyle='->', color='#c0392b', lw=2))
 
-    plt.title('Hyperparameter Sensitivity Analysis ($\lambda_{phy}$)', fontsize=18, fontweight='bold', pad=15)
+    plt.title(r'Hyperparameter Sensitivity Analysis ($\lambda_{phy}$)', fontsize=18, fontweight='bold', pad=15)
     plt.ylabel('Jam Factor MAE', fontsize=14, fontweight='bold')
-    plt.xlabel('Physics Loss Weight ($\lambda_{phy}$)', fontsize=14, fontweight='bold')
+    plt.xlabel(r'Physics Loss Weight ($\lambda_{phy}$)', fontsize=14, fontweight='bold')
     plt.grid(True, linestyle='--', alpha=0.7)
     
     plt.tight_layout()
-    plt.savefig("Fig_Hyperparameter_Sensitivity.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_Hyperparameter_Sensitivity.png"), dpi=300, bbox_inches='tight')
     print("\n✅ 實驗完成！完美的 U 型圖已儲存為 'Fig_Hyperparameter_Sensitivity.png'")
 
 if __name__ == "__main__":

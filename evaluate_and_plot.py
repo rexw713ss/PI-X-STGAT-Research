@@ -8,6 +8,7 @@ from torch.utils.data import DataLoader, Subset
 
 # 引入我們之前寫好的模組
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path
 from model import LSTMBaseline, VanillaSTGAT
 from metrics import PhysicsLossCheck
 
@@ -155,7 +156,7 @@ def main():
     plt.tight_layout(rect=[0, 0, 1, 0.93])
     
     # 儲存高畫質圖片
-    save_path = "Fig_Performance_Comparison.png"
+    save_path = figure_path("Fig_Performance_Comparison.png")
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
     print(f"✅ 圖表已成功儲存至: {save_path}")
     print("\n📊 最終數據表：")

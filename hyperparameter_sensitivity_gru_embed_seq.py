@@ -11,6 +11,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, Subset
 
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path, result_path
 from metrics import PhysicsLossCheck
 from model import PI_X_STGAT
 
@@ -191,14 +192,14 @@ def plot_results(csv_path: Path) -> None:
                 clip_on=True,
             )
 
-    plt.savefig("Fig_Hyperparameter_Sensitivity_GRU_Embed_Seq.png", dpi=300, bbox_inches="tight")
-    plt.savefig("Fig_Hyperparameter_Sensitivity_GRU_Embed_Seq.pdf", bbox_inches="tight")
+    plt.savefig(figure_path("Fig_Hyperparameter_Sensitivity_GRU_Embed_Seq.png"), dpi=300, bbox_inches="tight")
+    plt.savefig(figure_path("Fig_Hyperparameter_Sensitivity_GRU_Embed_Seq.pdf"), bbox_inches="tight")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="PI-X-STGAT sensitivity for GRU size, embedding dim, and sequence length.")
     parser.add_argument("--csv", default="all_segments_preprocessed.csv")
-    parser.add_argument("--output", default="hyperparameter_sensitivity_gru_embed_seq.csv")
+    parser.add_argument("--output", default=result_path("hyperparameter_sensitivity_gru_embed_seq.csv"))
     parser.add_argument("--seed", type=int, default=123)
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--patience", type=int, default=4)

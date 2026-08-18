@@ -11,6 +11,7 @@ import numpy as np
 from torch.utils.data import DataLoader, Subset
 
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path, result_path
 from metrics import PhysicsLossCheck
 from model import AGCRN_Baseline, LSTMBaseline, PI_X_STGAT, STGCN_Baseline
 
@@ -152,8 +153,8 @@ def plot_multistep(results_path: Path) -> None:
     plt.grid(True, linestyle="--", alpha=0.7)
     plt.legend(title="Model", title_fontsize="13", fontsize="12", loc="upper left")
     plt.tight_layout()
-    plt.savefig("Fig_Multistep_Forecasting_Final.png", dpi=300, bbox_inches="tight")
-    plt.savefig("Fig_Multistep_Forecasting.png", dpi=300, bbox_inches="tight")
+    plt.savefig(figure_path("Fig_Multistep_Forecasting_Final.png"), dpi=300, bbox_inches="tight")
+    plt.savefig(figure_path("Fig_Multistep_Forecasting.png"), dpi=300, bbox_inches="tight")
 
 
 def main() -> None:
@@ -162,8 +163,8 @@ def main() -> None:
     parser.add_argument("--epochs", type=int, default=8)
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--seq-len", type=int, default=12)
-    parser.add_argument("--output", default="multistep_forecasting_all_models.csv")
-    parser.add_argument("--new-baseline-metrics", default="new_baseline_metrics.csv")
+    parser.add_argument("--output", default=result_path("multistep_forecasting_all_models.csv"))
+    parser.add_argument("--new-baseline-metrics", default=result_path("new_baseline_metrics.csv"))
     parser.add_argument("--skip-existing", action="store_true")
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()

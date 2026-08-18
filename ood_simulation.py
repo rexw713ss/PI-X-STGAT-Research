@@ -8,7 +8,8 @@ from torch.utils.data import DataLoader, Subset
 import random
 
 from dataset import process_csv_to_tensors
-from model import PI_X_STGAT 
+from experiment_paths import figure_path
+from model import PI_X_STGAT
 from metrics import PhysicsLossCheck
 
 # 鎖定隨機亂數種子，保證實驗重現
@@ -107,7 +108,7 @@ def main():
     plt.axhline(0, color='black', linewidth=1.5, linestyle='--')
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig("Fig_OoD_1_LocalShock.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_OoD_1_LocalShock.png"), dpi=300, bbox_inches='tight')
 
     # ==========================================
     # ⛈️ 情境 2：全域異常 (極端氣候 Global Anomaly)
@@ -140,7 +141,7 @@ def main():
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.legend(loc='upper left', frameon=True, shadow=True)
     plt.tight_layout()
-    plt.savefig("Fig_OoD_2_GlobalWeather.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_OoD_2_GlobalWeather.png"), dpi=300, bbox_inches='tight')
 
     # ==========================================
     # 🏟️ 情境 3：區域異常與主動干預 (大型活動 Regional Event)
@@ -220,7 +221,7 @@ def main():
     plt.ylim(0, max(jam_event_baseline, jam_random, jam_xai) * 1.3)
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig("Fig_OoD_3_EventIntervention.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_OoD_3_EventIntervention.png"), dpi=300, bbox_inches='tight')
 
     print("\n✅ 三大 OoD 極端測試全數完成！請檢查資料夾中的 3 張圖片。")
 
