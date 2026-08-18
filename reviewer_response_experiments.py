@@ -6,6 +6,7 @@ from torch.utils.data import DataLoader, Subset
 
 # 記得確保這兩個 import 能對應到你專案中的檔案
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path
 from model import VanillaSTGAT
 
 def main():
@@ -88,10 +89,10 @@ def main():
     plt.style.use('seaborn-v0_8-whitegrid')
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
-    sns.kdeplot(residuals_base, ax=axes[0], color='#FF7043', fill=True, label='Baseline ($\lambda_{phy}=0$)')
-    sns.kdeplot(residuals_ours, ax=axes[0], color='#1976D2', fill=True, label='PI-X-STGAT ($\lambda_{phy}=0.01$)')
+    sns.kdeplot(residuals_base, ax=axes[0], color='#FF7043', fill=True, label=r'Baseline ($\lambda_{phy}=0$)')
+    sns.kdeplot(residuals_ours, ax=axes[0], color='#1976D2', fill=True, label=r'PI-X-STGAT ($\lambda_{phy}=0.01$)')
     axes[0].set_title('Distribution of Surrogate Conservation Residuals', fontsize=14, fontweight='bold')
-    axes[0].set_xlabel('Conservation Violation Magnitude ($|Q_{in} - Q_{out} - \Delta J|$)', fontsize=12)
+    axes[0].set_xlabel(r'Conservation Violation Magnitude ($|Q_{in} - Q_{out} - \Delta J|$)', fontsize=12)
     axes[0].set_ylabel('Density', fontsize=12)
     axes[0].set_xlim(0, np.percentile(residuals_base, 95)) # 裁掉極端長尾讓圖好看
     axes[0].legend()
@@ -101,7 +102,7 @@ def main():
     # ==========================================
     sns.histplot(errors_ours, ax=axes[1], bins=50, color='#2E7D32', kde=False)
     axes[1].set_title('Absolute Error Distribution (Jam Factor)', fontsize=14, fontweight='bold')
-    axes[1].set_xlabel('Absolute Prediction Error ($|J_{true} - \hat{J}|$)', fontsize=12)
+    axes[1].set_xlabel(r'Absolute Prediction Error ($|J_{true} - \hat{J}|$)', fontsize=12)
     axes[1].set_ylabel('Frequency', fontsize=12)
     
     # 畫線標示 MAE 和 RMSE 的差異
@@ -112,7 +113,7 @@ def main():
     axes[1].legend()
 
     plt.tight_layout()
-    plt.savefig("Fig_Reviewer_Defense.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_Reviewer_Defense.png"), dpi=300, bbox_inches='tight')
     print("🎨 成功生成防禦圖表：Fig_Reviewer_Defense.png")
 
 if __name__ == "__main__":

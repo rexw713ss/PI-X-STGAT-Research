@@ -8,6 +8,7 @@ import random
 import numpy as np
 
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path
 from metrics import PhysicsLossCheck
 
 # ==========================================
@@ -210,7 +211,7 @@ def main():
     plt.ylim(df['Jam MAE'].min() * 0.8, df['Jam MAE'].max() * 1.1)
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig("Fig_Ablation_Awesome.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_Ablation_Awesome.png"), dpi=300, bbox_inches='tight')
     print("\n✅ 消融實驗完成！超炫砲圖表已儲存為 'Fig_Ablation_Awesome.png'")
 
 if __name__ == "__main__":

@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
+from experiment_paths import figure_path
+
 def main():
     print("🚀 啟動干預模擬圖表修復 (18.5% Drop Version)...")
 
@@ -63,7 +65,7 @@ def main():
     plt.grid(axis='x', visible=False) # 關閉 X 軸的網格讓畫面更乾淨
     
     plt.tight_layout()
-    plt.savefig("Fig_Intervention_Simulation.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_Intervention_Simulation.png"), dpi=300, bbox_inches='tight')
     print("🎨 成功生成修正版圖表：Fig_Intervention_Simulation.png")
 
 if __name__ == "__main__":

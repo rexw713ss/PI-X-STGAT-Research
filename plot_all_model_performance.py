@@ -2,9 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+from experiment_paths import figure_path, result_path
+
 
 def main():
-    metric_output = "all_model_performance_for_plot.csv"
+    metric_output = result_path("all_model_performance_for_plot.csv")
     df = pd.read_csv(metric_output)
 
     model_order = [
@@ -112,7 +114,7 @@ def main():
 
     plt.tight_layout()
 
-    output = "Fig_Performance_Comparison_All_Models.png"
+    output = figure_path("Fig_Performance_Comparison_All_Models.png")
     plt.savefig(output, dpi=300, bbox_inches="tight")
     print(f"Saved figure: {output}")
     print(f"Saved plot data: {metric_output}")

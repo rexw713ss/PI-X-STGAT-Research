@@ -7,6 +7,7 @@ import seaborn as sns
 from torch.utils.data import DataLoader, Subset
 
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path
 # 🚨 引入最新的強力模型
 from model import AGCRN_Baseline, GraphWaveNet_Baseline, LSTMBaseline, MTGNN_Baseline, PI_X_STGAT
 from metrics import PhysicsLossCheck
@@ -156,7 +157,7 @@ def main():
     plt.grid(True, linestyle='--', alpha=0.7)
     
     plt.tight_layout()
-    plt.savefig("Fig_Multistep_Forecasting_Updated.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_Multistep_Forecasting_Updated.png"), dpi=300, bbox_inches='tight')
     print("\n✅ 實驗完成！折線圖已儲存為 'Fig_Multistep_Forecasting_Updated.png'")
 
 if __name__ == "__main__":

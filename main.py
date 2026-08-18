@@ -7,6 +7,7 @@ import seaborn as sns
 from torch.utils.data import DataLoader, Subset
 
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path
 # 🚨 記得在這裡 Import 新加的 STGCN_Baseline
 from model import (
     AGCRN_Baseline,
@@ -169,7 +170,7 @@ def main():
     plt.legend(title='Model', title_fontsize='13', fontsize='12', loc='upper left')
     
     plt.tight_layout()
-    plt.savefig("Fig_Multistep_Forecasting_Final.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_Multistep_Forecasting_Final.png"), dpi=300, bbox_inches='tight')
     print("\n✅ 實驗完成！五模型折線圖已完美儲存為 'Fig_Multistep_Forecasting_Final.png'")
 
 if __name__ == "__main__":

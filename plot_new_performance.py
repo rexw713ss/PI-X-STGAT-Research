@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from experiment_paths import figure_path
+
 def main():
     print("🎨 正在生成最新版效能對比圖 (包含 AGCRN)...")
 
@@ -72,7 +74,7 @@ def main():
             ax.set_ylim(0, 2.2)  # RMSE 範圍
 
     plt.tight_layout()
-    plt.savefig("Fig_New_Performance_Comparison.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_New_Performance_Comparison.png"), dpi=300, bbox_inches='tight')
     print("✅ 成功生成：Fig_New_Performance_Comparison.png")
 
 if __name__ == "__main__":

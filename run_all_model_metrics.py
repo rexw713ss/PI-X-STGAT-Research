@@ -10,6 +10,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, Subset
 
 from dataset import process_csv_to_tensors
+from experiment_paths import result_path
 from metrics import PhysicsLossCheck
 from model import (
     AGCRN_Baseline,
@@ -193,7 +194,7 @@ def main() -> None:
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--seq-len", type=int, default=12)
     parser.add_argument("--horizon", type=int, default=1)
-    parser.add_argument("--output", default="all_model_performance_for_plot.csv")
+    parser.add_argument("--output", default=result_path("all_model_performance_for_plot.csv"))
     parser.add_argument("--skip-existing", action="store_true")
     parser.add_argument("--num-threads", type=int, default=0)
     parser.add_argument("--models", nargs="+", default=None)

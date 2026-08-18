@@ -1,0 +1,7 @@
+# Preserve binary research artifacts exactly.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.pt binary

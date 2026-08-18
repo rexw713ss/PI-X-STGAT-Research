@@ -8,6 +8,7 @@ from torch.utils.data import DataLoader, Subset
 
 # 記得確保這兩個 import 能對應到你專案中的檔案
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path
 from model import VanillaSTGAT
 
 def main():
@@ -177,7 +178,7 @@ def main():
     ax2.grid(False)
     
     plt.tight_layout()
-    plt.savefig("Fig_Real_Dynamic_Attention.png", dpi=300, bbox_inches='tight')
+    plt.savefig(figure_path("Fig_Real_Dynamic_Attention.png"), dpi=300, bbox_inches='tight')
     print("🎨 真實數據圖表已生成：Fig_Real_Dynamic_Attention.png")
 
 if __name__ == "__main__":

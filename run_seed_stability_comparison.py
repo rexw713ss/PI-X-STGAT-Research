@@ -11,6 +11,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, Subset
 
 from dataset import process_csv_to_tensors
+from experiment_paths import figure_path, result_path
 from metrics import PhysicsLossCheck
 from model import MTGNN_Baseline, PI_X_STGAT
 
@@ -191,7 +192,7 @@ def plot_results(result_path: Path, summary_path: Path) -> None:
             )
 
     plt.tight_layout()
-    output = "Fig_Seed_Stability_Comparison.png"
+    output = figure_path("Fig_Seed_Stability_Comparison.png")
     plt.savefig(output, dpi=300, bbox_inches="tight")
     print(f"Saved figure: {output}", flush=True)
     print(f"Saved summary: {summary_path}", flush=True)
@@ -207,8 +208,8 @@ def main() -> None:
     parser.add_argument("--horizon", type=int, default=1)
     parser.add_argument("--seeds", type=int, nargs="+", default=[42, 7, 123, 2024, 3407])
     parser.add_argument("--models", nargs="+", default=["PI-X-STGAT", "MTGNN"])
-    parser.add_argument("--output", default="seed_stability_results.csv")
-    parser.add_argument("--summary-output", default="seed_stability_summary.csv")
+    parser.add_argument("--output", default=result_path("seed_stability_results.csv"))
+    parser.add_argument("--summary-output", default=result_path("seed_stability_summary.csv"))
     parser.add_argument("--skip-existing", action="store_true")
     args = parser.parse_args()
 

@@ -11,6 +11,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, Subset
 
 from dataset import process_csv_to_tensors
+from experiment_paths import checkpoint_path, result_path
 from metrics import PhysicsLossCheck
 from model import PI_X_STGAT
 
@@ -177,9 +178,9 @@ def update_performance_csv(csv_path: Path, best_row: dict) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Search a best-epoch PI-X-STGAT run and update the comparison table.")
     parser.add_argument("--csv", default="all_segments_preprocessed.csv")
-    parser.add_argument("--output", default="pix_best_search_results.csv")
-    parser.add_argument("--performance-csv", default="all_model_performance_for_plot.csv")
-    parser.add_argument("--checkpoint", default="pix_best_checkpoint.pt")
+    parser.add_argument("--output", default=result_path("pix_best_search_results.csv"))
+    parser.add_argument("--performance-csv", default=result_path("all_model_performance_for_plot.csv"))
+    parser.add_argument("--checkpoint", default=checkpoint_path("pix_best_checkpoint.pt"))
     parser.add_argument("--epochs", type=int, default=15)
     parser.add_argument("--patience", type=int, default=5)
     parser.add_argument("--batch-size", type=int, default=32)

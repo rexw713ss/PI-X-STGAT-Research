@@ -11,6 +11,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, Subset
 
 from dataset import process_csv_to_tensors
+from experiment_paths import checkpoint_path, figure_path, result_path
 from metrics import PhysicsLossCheck
 from model import (
     AGCRN_Baseline,
@@ -259,14 +260,14 @@ def plot_results(results: pd.DataFrame, scenario_label: str) -> None:
             )
 
     plt.tight_layout()
-    plt.savefig("Fig_Real_Event_OoD.png", dpi=300, bbox_inches="tight")
+    plt.savefig(figure_path("Fig_Real_Event_OoD.png"), dpi=300, bbox_inches="tight")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate real dataset OoD slices such as holidays or rain.")
     parser.add_argument("--csv", default="all_segments_preprocessed.csv")
     parser.add_argument("--scenario", choices=["holiday", "rain"], default="holiday")
-    parser.add_argument("--checkpoint", default="pix_best_checkpoint.pt")
+    parser.add_argument("--checkpoint", default=checkpoint_path("pix_best_checkpoint.pt"))
     parser.add_argument("--epochs", type=int, default=8)
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--seed", type=int, default=42)
@@ -284,7 +285,7 @@ def main() -> None:
 
     time_meta, meta_train_size = build_time_metadata(args.csv, seq_len=12, horizon=1)
     event_summary = summarize_real_events(time_meta, meta_train_size)
-    event_summary.to_csv("real_ood_event_candidates.csv", index=False, encoding="utf-8-sig")
+    event_summary.to_csv(result_path("real_ood_event_candidates.csv"), index=False, encoding="utf-8-sig")
     print("Real OoD candidates in test split:")
     print(event_summary.to_string(index=False), flush=True)
 
@@ -302,9 +303,9 @@ def main() -> None:
         print(f"{model_name}: MAE={metrics['Jam MAE']:.4f}, RMSE={metrics['Jam RMSE']:.4f}", flush=True)
 
     results = pd.DataFrame(rows)
-    results.to_csv("real_event_ood_results.csv", index=False, encoding="utf-8-sig")
+    results.to_csv(result_path("real_event_ood_results.csv"), index=False, encoding="utf-8-sig")
     plot_results(results, scenario_label)
-    print("Saved: real_event_ood_results.csv, real_ood_event_candidates.csv, Fig_Real_Event_OoD.png", flush=True)
+    print("Saved outputs under results/ and figures/.", flush=True)
 
 
 if __name__ == "__main__":

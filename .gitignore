@@ -1,0 +1,50 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments and local package caches
+.venv/
+venv/
+env/
+.uv-cache/
+.uv-python/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local data (HERE Maps data cannot be redistributed here)
+all_segments_preprocessed.csv
+all_segments_preprocessed.zip
+data/
+
+# Local manuscripts and literature library
+paper/
+literature review/
+literature/
+
+# LaTeX and document build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+draft.pdf
+draft.docx
+
+# Temporary experiment outputs
+smoke_*.csv
+*.tmp
+*.bak

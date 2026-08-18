@@ -355,8 +355,35 @@ class PI_X_STGAT(nn.Module):
         pred = self.fc(last_hidden)     
         pred = pred.reshape(B, N, -1)   
         
-        attention = attention.reshape(B, S, N, N)[:, -1, :, :] 
+        attention = attention.reshape(B, S, N, N)[:, -1, :, :]
         return pred, attention
+
+
+class VanillaSTGAT(PI_X_STGAT):
+    """Backward-compatible STGAT variant used by archived analysis scripts.
+
+    Historical scripts used a five-argument constructor without node-adaptive
+    parameter learning. This wrapper keeps those scripts runnable without
+    changing the final PI-X-STGAT implementation.
+    """
+
+    def __init__(
+        self,
+        input_dim: int,
+        gat_dim: int,
+        gru_dim: int,
+        output_dim: int,
+        adj_matrix: torch.Tensor,
+    ):
+        super().__init__(
+            num_nodes=adj_matrix.shape[0],
+            input_dim=input_dim,
+            gat_dim=gat_dim,
+            gru_dim=gru_dim,
+            output_dim=output_dim,
+            adj_matrix=adj_matrix,
+            use_napl=False,
+        )
 
 # ==========================================
 # 3. 準備給你的強力 Baseline：AGCRN (簡化相容版)
